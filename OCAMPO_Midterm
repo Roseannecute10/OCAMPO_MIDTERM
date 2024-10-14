@@ -1,0 +1,87 @@
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+class Student extends Person {
+    private String studentID;
+    private String course;
+    private int units;
+    private final int feePerUnit = 5000;
+
+    public Student(String name, int age, String studentID, String course, int units) {
+        super(name, age);
+        this.studentID = studentID;
+        this.course = course;
+        this.units = units;
+    }
+
+    public double calculateFees() {
+        return units * feePerUnit;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Course: " + course);
+        System.out.println("Units: " + units);
+        System.out.println("Total Fee: " + calculateFees());
+    }
+}
+
+class Instructor extends Person {
+    private String employeeID;
+    private String department;
+    private int salary;
+
+    public Instructor(String name, int age, String employeeID, String department, int salary) {
+        super(name, age);
+        this.employeeID = employeeID;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: " + salary + " Pesos");
+    }
+}
+
+public class UniversityEnrollment {
+    public static void printDetails(Person p) {
+        p.displayInfo();
+    }
+
+    public static void main(String[] args) {
+        // Create two Student objects
+        Student student1 = new Student("Rose Anne Ocamp", 20, "231002834", "Bachelor of Science Computer Engineering", 15);
+        Student student2 = new Student("Iris Ibarreta", 20, "231005248", "Bachelor of Science in Architecture", 15);
+
+        // Create two Instructor objects
+        Instructor instructor1 = new Instructor("Engr. Tanya Carmela Jovillano", 25, "I5717789", "College of Engineering and Architecture", 80000);
+        Instructor instructor2 = new Instructor("Engr. Angela Caning", 25, "  I6718879", "College of Engineering and Architecture", 80000 );
+
+        // Print details of all persons using polymorphism
+        printDetails(student1);
+        System.out.println("--------------------");
+        printDetails(student2);
+        System.out.println("--------------------");
+        printDetails(instructor1);
+        System.out.println("--------------------");
+        printDetails(instructor2);
+    }
+}
